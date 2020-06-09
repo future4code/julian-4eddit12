@@ -4,7 +4,7 @@ import { Login } from "./pages/Login";
 import { Feed } from "./pages/Feed";
 import { SignUp } from "./pages/SignUp";
 import { Comments } from "./pages/Comments";
-import { Error } from "./pages/Error";
+import ErrorScreen from "./pages/Error";
 import "./App.css";
 
 function App() {
@@ -21,11 +21,14 @@ function App() {
           <Route exact path="/home">
             <Feed />
           </Route>
+          <Route exact path="/">
+            <Feed />
+          </Route>
           <Route exact path="/comment">
             <Comments />
           </Route>
           <Route path="/">
-            <Error />
+            <ErrorScreen />
           </Route>
         </Switch>
       </BrowserRouter>
