@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const baseUrl = "https://us-central1-labenu-apis.cloudfunctions.net/labEddit";
+export const baseUrl =
+  "https://us-central1-labenu-apis.cloudfunctions.net/labEddit";
+
 export const useForm = (initialValues) => {
   const [form, setForm] = useState(initialValues);
 
@@ -36,4 +38,18 @@ export const getPosts = () => {
   return response;
 };
 
-export const signUpRequest = (form) => {};
+export const signUpRequest = (form) => {
+  const body = {
+    email: form.email,
+    password: form.password,
+    username: form.username,
+  };
+  axios
+    .post(`${baseUrl}/signup`, body)
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err.data);
+    });
+};
