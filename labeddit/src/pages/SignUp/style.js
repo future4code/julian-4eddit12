@@ -10,10 +10,13 @@ export const SignUpContainer = styled.div`
 
 export const FormContainer = styled.div`
   border: 2px black solid;
-  width: 40%;
+  width: 80%;
   background-color: #e8e3f1;
   border-radius: 10px;
   padding: 10px;
+  @media screen and (min-width: 1000px) {
+    width: 40%;
+  }
 `;
 
 export const Form = styled.form`
