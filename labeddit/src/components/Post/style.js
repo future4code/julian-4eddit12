@@ -23,3 +23,5 @@ export const BotoesContainer = styled.div`
 `;
 
 export const TextContainer = styled.div``;
+
+
