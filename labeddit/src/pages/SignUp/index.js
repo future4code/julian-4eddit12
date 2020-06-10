@@ -32,7 +32,7 @@ export function SignUp() {
             type="email"
             value={form.email}
             required
-            patter="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
             placeholder="Digite seu email"
             onChange={handleInput}
           />
