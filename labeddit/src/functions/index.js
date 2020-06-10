@@ -53,3 +53,19 @@ export const signUpRequest = (form) => {
       console.log(err.data);
     });
 };
+
+export const loginRequest = (form) => {
+  const body = {
+    email: form.email,
+    password: form.password,
+  }
+  const response = axios
+  .post(`${baseUrl}/login`,body)
+  .then((res) => {
+    window.alert("Login efetuado com sucesso!")
+  })
+  .catch((err) => {
+    window.alert("Ocorreu um erro no login.")
+  })
+  window.localStorage.setItem("token", response.data.token)
+}
