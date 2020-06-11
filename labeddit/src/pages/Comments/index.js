@@ -1,9 +1,8 @@
 import React from "react";
-
-// import { Container } from './styles';
+import { CommentsContainer } from "./style";
 
 export function Comments() {
-  return <div>Comments</div>;
+  return <CommentsContainer>Comments</CommentsContainer>;
 }
 
 export default Comments;

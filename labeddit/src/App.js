@@ -24,7 +24,7 @@ function App() {
           <Route exact path="/">
             <Feed />
           </Route>
-          <Route exact path="/comment">
+          <Route exact path="/comment/:postID">
             <Comments />
           </Route>
           <Route path="/">

@@ -7,3 +7,13 @@ body {
 code {
   font-family: "Chivo", sans-serif;
 }
+
+::-moz-selection {
+  background-color: #292440;
+  color: #e8e3f1;
+}
+
+::selection {
+  background-color: #292440;
+  color: #e8e3f1;
+}
