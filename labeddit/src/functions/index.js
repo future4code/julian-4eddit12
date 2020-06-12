@@ -22,7 +22,7 @@ export const useForm = (initialValues) => {
 export const getPosts = async () => {
   const token = window.localStorage.getItem("token");
 
-  const response = wait axios.get(`${baseUrl}/posts`, {
+  const response = await axios.get(`${baseUrl}/posts`, {
     headers: {
       Authorization: token,
     },
