@@ -9,6 +9,7 @@ import {
 } from "./style";
 import Post from "../../components/Post";
 import { getPosts, useForm, sendPost, gateKeeper } from "../../functions";
+import { Header } from "../../components/header";
 import { LoaderAnimation } from "../../pages/Comments/style";
 import { useHistory } from "react-router-dom";
 
@@ -40,6 +41,8 @@ export function Feed() {
 
   return (
     <FeedContainer>
+      <Header />
+      <Post />
       <NewPostContainer>
         <h1>nova postagem</h1>
         <Form onSubmit={submitFunction}>
