@@ -1,8 +1,11 @@
 import React from "react";
 import { SignUpContainer, FormContainer, Form, Input, Botao } from "./style";
 import { useForm, signUpRequest } from "../../functions";
+import { useHistory } from "react-router-dom";
 
 export function SignUp() {
+  const history = useHistory();
+
   const { form, onChange, resetForm } = useForm({
     username: "",
     email: "",
@@ -18,7 +21,7 @@ export function SignUp() {
   const submitFunction = async (e) => {
     e.preventDefault();
 
-    await signUpRequest(form);
+    await signUpRequest(form, history);
 
     resetForm();
   };
