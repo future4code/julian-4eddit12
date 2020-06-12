@@ -6,24 +6,34 @@ import {
   Botao,
   BotoesContainer,
   TextContainer,
+  AutorText,
 } from "./style";
+import UpVote from "../../imgs/upvote-icon.svg";
+import DownVote from "../../imgs/downvote-icon.svg";
+import { useHistory } from "react-router-dom";
 
-function Post() {
+function Post(props) {
+  const history = useHistory();
+
+  const openPost = () => {
+    history.push(`/comment/${props.post.id}`);
+  };
   return (
     <PostContainer>
       <BotoesContainer>
-        <Botao>/\</Botao>
-        <Botao>\/</Botao>
+        <Botao>
+          <img src={UpVote} alt="Upvote icon" height="30px" />
+        </Botao>
+        <p>{props.post.votesCount}</p>
+        <Botao>
+          <img src={DownVote} alt="Upvote icon" height="30px" />
+        </Botao>
       </BotoesContainer>
       <TextContainer>
-        <PostTitle>Título do Post</PostTitle>
-        <PostText>
-          “The individual has always had to struggle to keep from being
-          overwhelmed by the tribe. If you try it, you will be lonely often, and
-          sometimes frightened. But no price is too high to pay for the
-          privilege of owning yourself.”
-        </PostText>
-        <Botao>Comentarios</Botao>
+        <AutorText>por {props.post.username}</AutorText>
+        <PostTitle onClick={openPost}>{props.post.title}</PostTitle>
+        <PostText>{props.post.text}</PostText>
+        <Botao onClick={openPost}>{props.post.commentsCount} Comentarios</Botao>
       </TextContainer>
     </PostContainer>
   );

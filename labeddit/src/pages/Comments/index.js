@@ -7,6 +7,7 @@ import {
   Botao,
   CommentArea,
   CommentContainer,
+  LoaderAnimation,
 } from "./style";
 import { useParams, useHistory } from "react-router-dom";
 import {
@@ -14,6 +15,7 @@ import {
   upVote,
   downVote,
   createComment,
+  gateKeeper,
 } from "../../functions";
 import UpVote from "../../imgs/upvote-icon.svg";
 import DownVote from "../../imgs/downvote-icon.svg";
@@ -32,6 +34,7 @@ export function CommentPage() {
   const [postText, setPostText] = useState("");
 
   useEffect(() => {
+    gateKeeper(history);
     fetchComments(pathParams.postID)
       .then((res) => setPost(res))
       .then(getDate(post));
@@ -57,6 +60,8 @@ export function CommentPage() {
   const comment = () => {
     const postID = post.id;
     createComment(postID, postText);
+
+    setPostText("");
   };
 
   return (
@@ -85,7 +90,7 @@ export function CommentPage() {
       </CommentWrapper>
       <CommentContainer>
         {post.comments === undefined ? (
-          <p>Loading</p>
+          <LoaderAnimation />
         ) : (
           post.comments.map((comment) => {
             return (

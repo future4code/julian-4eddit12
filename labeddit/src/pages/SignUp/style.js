@@ -9,7 +9,6 @@ export const SignUpContainer = styled.div`
 `;
 
 export const FormContainer = styled.div`
-  border: 2px black solid;
   width: 80%;
   background-color: #e8e3f1;
   border-radius: 10px;
@@ -20,14 +19,21 @@ export const FormContainer = styled.div`
 `;
 
 export const Form = styled.form`
+  height: 30vh;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
+  justify-content: center;
   input {
     width: 60%;
   }
 `;
 
-export const Input = styled.input``;
+export const Input = styled.input`
+  height: 30px;
+  border: 2px #6b59be solid;
+  margin: 5px;
+  border-radius: 10px;
+`;
 
 export const Botao = styled(CleanButton)``;

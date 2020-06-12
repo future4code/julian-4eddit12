@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { CleanButton } from "../../components/Common";
-
+import { CleanButton, Loader } from "../../components/Common";
 export const PostContainer = styled.div`
   background-color: #e8e3f1;
   width: 90%;
@@ -38,3 +37,5 @@ export const CommentContainer = styled.div`
   grid-column-start: 2;
   background-color: white;
 `;
+
+export const LoaderAnimation = styled(Loader)``;

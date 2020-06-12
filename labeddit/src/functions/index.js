@@ -141,12 +141,28 @@ export const createComment = (postID, postText) => {
   };
   const token = window.localStorage.getItem("token");
 
+  axios.post(`${baseUrl}/posts/${postID}/comment`, body, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
+export const gateKeeper = (history) => {
+  const token = window.localStorage.getItem("token");
+
+  if (token === null) {
+    history.push("/login");
+  }
+};
+
+export const sendPost = (form) => {
+  const body = form;
+
+  const token = window.localStorage.getItem("token");
+
   axios
-    .post(`${baseUrl}/posts/${postID}/comment`, body, {
-      headers: {
-        Authorization: token,
-      },
-    })
+    .post(`${baseUrl}/posts`, body, { headers: { Authorization: token } })
     .then((res) => {
       console.log(res.data);
     })

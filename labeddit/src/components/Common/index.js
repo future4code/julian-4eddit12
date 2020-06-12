@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { keyFrameLoading } from "../../components/Common/keyframes";
 
 export const CleanButton = styled.button`
   display: inline-block;
@@ -28,4 +29,16 @@ export const CleanButton = styled.button`
   &:active {
     transform: scale(0.99);
   }
+`;
+
+export const Loader = styled.div`
+  position: absolute;
+  margin-left: 30%;
+  border: 4px solid transparent;
+  height: 23vh;
+  width: 10vw;
+  border-bottom: 5px solid #e8e3f1;
+  border-radius: 50%;
+  animation: animate 1s linear infinite;
+  animation-name: ${keyFrameLoading};
 `;

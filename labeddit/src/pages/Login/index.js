@@ -1,6 +1,14 @@
 import React from "react";
-import { LoginContainer, BoxLogin, ButtonContainer } from "./style";
-import { FormContainer, Form, Input } from "../SignUp/style";
+import {
+  LoginContainer,
+  BoxLogin,
+  Text,
+  TextLink,
+  TextContainer,
+  Form,
+  Input,
+  FormContainer,
+} from "./style";
 import { Botao } from "../../components/Post/style";
 import { useForm, loginRequest } from "../../functions";
 import { useHistory } from "react-router-dom";
@@ -27,27 +35,35 @@ export function Login() {
   return (
     <LoginContainer>
       <BoxLogin>
-        <Form onSubmit={submitFunction}>
-          <Input
-            name="email"
-            type="email"
-            placeholder="Email"
-            required
-            onChange={handleInput}
-            value={form.email}
-          />
+        <FormContainer>
+          <Form onSubmit={submitFunction}>
+            <Input
+              name="email"
+              type="email"
+              placeholder="Email"
+              required
+              onChange={handleInput}
+              value={form.email}
+            />
 
-          <Input
-            name="password"
-            type="password"
-            placeholder="Senha"
-            required
-            onChange={handleInput}
-            value={form.password}
-          />
+            <Input
+              name="password"
+              type="password"
+              placeholder="Senha"
+              required
+              onChange={handleInput}
+              value={form.password}
+            />
 
-          <Botao type="submit">Entrar</Botao>
-        </Form>
+            <Botao type="submit">Entrar</Botao>
+          </Form>
+        </FormContainer>
+        <TextContainer>
+          <Text>Caso ainda não esteja registrado, faça seu cadastro </Text>
+          <TextLink>
+            <strong>aqui</strong>
+          </TextLink>
+        </TextContainer>
       </BoxLogin>
     </LoginContainer>
   );
