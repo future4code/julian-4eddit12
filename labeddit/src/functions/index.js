@@ -19,23 +19,16 @@ export const useForm = (initialValues) => {
   return { form, onChange, resetForm };
 };
 
-export const getPosts = () => {
+export const getPosts = async () => {
   const token = window.localStorage.getItem("token");
 
-  const response = axios
-    .get(
-      {
-        headers: {
-          Authorization: token,
-        },
-      },
-      `${baseUrl}/posts`
-    )
-    .catch((err) => {
-      window.alert("Ocorreu um erro ao buscar os posts");
-    });
+  const response = wait axios.get(`${baseUrl}/posts`, {
+    headers: {
+      Authorization: token,
+    },
+  });
 
-  return response;
+  return response.data.posts;
 };
 
 export const signUpRequest = (form) => {
