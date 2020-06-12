@@ -8,6 +8,7 @@ import {
   Form,
 } from "./style";
 import Post from "../../components/Post";
+import { Header } from "../../components/header";
 import { getPosts, useForm, sendPost } from "../../functions";
 import { LoaderAnimation } from "../../pages/Comments/style";
 
@@ -37,6 +38,9 @@ export function Feed() {
 
   return (
     <FeedContainer>
+      <Header/>
+      <button onClick={teste}>Teste</button>
+      <Post />
       <NewPostContainer>
         <h1>nova postagem</h1>
         <Form onSubmit={submitFunction}>
