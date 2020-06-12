@@ -3,7 +3,7 @@ import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { Feed } from "./pages/Feed";
 import { SignUp } from "./pages/SignUp";
-import { Comments } from "./pages/Comments";
+import { CommentPage } from "./pages/Comments";
 import ErrorScreen from "./pages/Error";
 import "./App.css";
 
@@ -25,7 +25,7 @@ function App() {
             <Feed />
           </Route>
           <Route exact path="/comment/:postID">
-            <Comments />
+            <CommentPage />
           </Route>
           <Route path="/">
             <ErrorScreen />

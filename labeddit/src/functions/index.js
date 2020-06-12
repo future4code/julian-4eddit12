@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 export const baseUrl =
@@ -19,26 +20,19 @@ export const useForm = (initialValues) => {
   return { form, onChange, resetForm };
 };
 
-export const getPosts = () => {
+export const getPosts = async () => {
   const token = window.localStorage.getItem("token");
 
-  const response = axios
-    .get(
-      {
-        headers: {
-          Authorization: token,
-        },
-      },
-      `${baseUrl}/posts`
-    )
-    .catch((err) => {
-      window.alert("Ocorreu um erro ao buscar os posts");
-    });
+  const response = await axios.get(`${baseUrl}/posts`, {
+    headers: {
+      Authorization: token,
+    },
+  });
 
-  return response;
+  return response.data.posts;
 };
 
-export const signUpRequest = (form) => {
+export const signUpRequest = (form, history) => {
   const body = {
     email: form.email,
     password: form.password,
@@ -47,6 +41,79 @@ export const signUpRequest = (form) => {
   axios
     .post(`${baseUrl}/signup`, body)
     .then((res) => {
+      window.alert("Usuário cadastrado com sucesso!");
+    })
+    .catch((err) => {
+      window.alert("Seu cadastro possui dados inválidos");
+    });
+
+  history.replace("/login");
+};
+
+export const loginRequest = async (form, history) => {
+  const body = {
+    email: form.email,
+    password: form.password,
+  };
+  const response = await axios
+    .post(`${baseUrl}/login`, body)
+    .then((response) =>
+      window.localStorage.setItem("token", response.data.token)
+    );
+
+  history.push("/home");
+};
+
+export const fetchComments = async (postID) => {
+  const token = window.localStorage.getItem("token");
+  const response = await axios.get(`${baseUrl}/posts/${postID}`, {
+    headers: { Authorization: token },
+  });
+
+  return response.data.post;
+};
+
+export const upVote = (postID) => {
+  const body = {
+    direction: 1,
+  };
+
+  const token = window.localStorage.getItem("token");
+
+  axios.put(`${baseUrl}/posts/${postID}/vote`, body, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
+export const downVote = (postID) => {
+  const body = {
+    direction: -1,
+  };
+  const token = window.localStorage.getItem("token");
+
+  axios.put(`${baseUrl}/posts/${postID}/vote`, body, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
+export const upVoteComment = (postID, commentID) => {
+  const body = {
+    direction: 1,
+  };
+
+  const token = window.localStorage.getItem("token");
+
+  axios
+    .put(`${baseUrl}/posts/${postID}/comment/${commentID}/vote`, body, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    .then((res) => {
       console.log(res.data);
     })
     .catch((err) => {
@@ -54,18 +121,36 @@ export const signUpRequest = (form) => {
     });
 };
 
-export const loginRequest = (form) => {
+export const downVoteComment = (postID, commentID) => {
   const body = {
-    email: form.email,
-    password: form.password,
-  }
-  const response = axios
-  .post(`${baseUrl}/login`,body)
-  .then((res) => {
-    window.alert("Login efetuado com sucesso!")
-  })
-  .catch((err) => {
-    window.alert("Ocorreu um erro no login.")
-  })
-  window.localStorage.setItem("token", response.data.token)
-}
+    direction: -1,
+  };
+
+  const token = window.localStorage.getItem("token");
+
+  axios.put(`${baseUrl}/posts/${postID}/comment/${commentID}/vote`, body, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
+export const createComment = (postID, postText) => {
+  const body = {
+    text: postText,
+  };
+  const token = window.localStorage.getItem("token");
+
+  axios
+    .post(`${baseUrl}/posts/${postID}/comment`, body, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err.data);
+    });
+};
