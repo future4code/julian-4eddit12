@@ -42,7 +42,6 @@ export function Feed() {
   return (
     <FeedContainer>
       <Header />
-      <Post />
       <NewPostContainer>
         <h1>nova postagem</h1>
         <Form onSubmit={submitFunction}>
@@ -64,7 +63,7 @@ export function Feed() {
       {posts === undefined ? (
         <LoaderAnimation />
       ) : (
-        posts.map((post) => <Post key={post.createdAt} post={post} />)
+        posts.map((post) => <Post key={post.id} post={post} />)
       )}
     </FeedContainer>
   );

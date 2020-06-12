@@ -18,6 +18,7 @@ function Post(props) {
   const openPost = () => {
     history.push(`/comment/${props.post.id}`);
   };
+
   return (
     <PostContainer>
       <BotoesContainer>
