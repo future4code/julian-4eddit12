@@ -49,4 +49,7 @@ export const TextContainer = styled.div`
   width: 96%;
   height: 99%;
   border-radius: 10px;
+  @media screen and (max-width: 500px) {
+    margin-left: 10px;
+  }
 `;

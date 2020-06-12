@@ -32,6 +32,9 @@ export function Login() {
     loginRequest(form, history);
   };
 
+  const pushToSignUp = () => {
+    history.push("/signup");
+  };
   return (
     <LoginContainer>
       <BoxLogin>
@@ -60,7 +63,7 @@ export function Login() {
         </FormContainer>
         <TextContainer>
           <Text>Caso ainda não esteja registrado, faça seu cadastro </Text>
-          <TextLink>
+          <TextLink onClick={pushToSignUp}>
             <strong>aqui</strong>
           </TextLink>
         </TextContainer>

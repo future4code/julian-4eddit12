@@ -8,13 +8,16 @@ import {
   Form,
 } from "./style";
 import Post from "../../components/Post";
-import { getPosts, useForm, sendPost } from "../../functions";
+import { getPosts, useForm, sendPost, gateKeeper } from "../../functions";
 import { LoaderAnimation } from "../../pages/Comments/style";
+import { useHistory } from "react-router-dom";
 
 export function Feed() {
   const [posts, setPosts] = useState([]);
 
+  const history = useHistory();
   useEffect(() => {
+    gateKeeper(history);
     getPosts().then((resposta) => setPosts(resposta));
   }, []);
 
@@ -58,7 +61,7 @@ export function Feed() {
       {posts === undefined ? (
         <LoaderAnimation />
       ) : (
-        posts.map((post) => <Post post={post} />)
+        posts.map((post) => <Post key={post.createdAt} post={post} />)
       )}
     </FeedContainer>
   );

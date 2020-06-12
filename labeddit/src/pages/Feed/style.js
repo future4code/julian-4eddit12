@@ -8,6 +8,9 @@ export const PostText = styled.textarea`
   border: 2px #6b59be solid;
   margin: 5px;
   border-radius: 10px;
+  @media only screen and (max-width: 500px) {
+    width: 90%;
+  }
 `;
 
 export const Input = styled.input`
@@ -16,6 +19,9 @@ export const Input = styled.input`
   margin: 5px;
   border-radius: 10px;
   width: 30%;
+  @media only screen and (max-width: 500px) {
+    width: 60%;
+  }
 `;
 export const NewPostContainer = styled.div`
   display: flex;
